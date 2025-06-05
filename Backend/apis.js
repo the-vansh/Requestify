@@ -20,7 +20,7 @@ const app = express();
 // Setup WebSocket server
 const cors = require('cors');
 const corsOptions = {
-    origin: ["https://requestify-frontend.vercel.app/"],
+    origin: ["https://requestify-frontend.vercel.app"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     optionSuccessStatus: 200,
@@ -46,12 +46,12 @@ setWSS(wss);
 
 app.use(express.json());
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   next();
+// });
 
 // Connect to MongoDB
 connectDB();
