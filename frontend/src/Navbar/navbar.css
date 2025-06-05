@@ -1,0 +1,86 @@
+nav {
+  background-color: #3590b1;
+  padding: 16px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+nav h2 {
+  color: white;
+  margin: 0;
+  font-size: 1.8rem;
+  flex: 1;
+}
+
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex: 2;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+}
+
+
+nav li {
+  display: flex;
+  align-items: center;
+}
+
+
+#createRoomBtn {
+  margin-right: auto; 
+}
+
+
+nav button {
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #095a68;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  min-width: 120px;
+  text-align: center;
+}
+
+
+nav button:hover {
+  background-color: #2586a9;
+}
+
+
+#createRoomBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  #createRoomBtn {
+    margin-right: 0;
+    order: -1;
+  }
+}

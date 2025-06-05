@@ -1,0 +1,63 @@
+.create-room-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.create-room-box {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 40px 30px;
+  text-align: center;
+  width: 90%;
+  max-width: 500px;
+}
+
+.create-room-box h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.create-room-box input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+.create-room-box button {
+  padding: 10px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin: 0 6px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.create-room-box .create-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.create-room-box .create-btn:hover {
+  background-color: #218838;
+}
+
+.create-room-box .cancel-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.create-room-box .cancel-btn:hover {
+  background-color: #c82333;
+}
