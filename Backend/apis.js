@@ -18,21 +18,7 @@ const { broadcast, setWSS } = require("./wss");
 const app = express();
 
 // Setup WebSocket server
-
-const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
-
-setWSS(wss);
 const cors = require('cors');
-
-// app.use(cors({
-//   origin: function (origin, callback) {
-//     // Allow all origins 
-//     callback(null, origin || '*');
-//   },
-//   credentials: true
-// }));
-
 const corsOptions = {
     origin: ["https://requestify-frontend.vercel.app/"],
     credentials: true,
@@ -41,6 +27,21 @@ const corsOptions = {
     allowedHeaders: ["Content-Type", "Authorization","auth-token"], // Allowed headers
 };
 app.use(cors(corsOptions));
+
+
+
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server });
+
+setWSS(wss);
+
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     // Allow all origins 
+//     callback(null, origin || '*');
+//   },
+//   credentials: true
+// }));
 
 
 app.use(express.json());
