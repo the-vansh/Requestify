@@ -34,7 +34,7 @@ const cors = require('cors');
 // }));
 
 const corsOptions = {
-    origin: ["http://192.168.31.221:3000"],
+    origin: ["*"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     optionSuccessStatus: 200,
