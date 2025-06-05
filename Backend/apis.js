@@ -25,13 +25,22 @@ const wss = new WebSocket.Server({ server });
 setWSS(wss);
 const cors = require('cors');
 
-app.use(cors({
-  origin: function (origin, callback) {
-    // Allow all origins 
-    callback(null, origin || '*');
-  },
-  credentials: true
-}));
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     // Allow all origins 
+//     callback(null, origin || '*');
+//   },
+//   credentials: true
+// }));
+
+const corsOptions = {
+    origin: ["http://localhost:3000"],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    optionSuccessStatus: 200,
+    allowedHeaders: ["Content-Type", "Authorization","auth-token"], // Allowed headers
+};
+app.use(cors(corsOptions));
 
 
 app.use(express.json());
