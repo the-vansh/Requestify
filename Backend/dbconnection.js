@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    const mongoURI = "mongodb+srv://vs3943943:7K5YucFOzUIsVWEX@requestify.0clpe24.mongodb.net/";
+    const mongoURI = "mongodb+srv://vs3943943:7K5YucFOzUIsVWEX@requestify.0clpe24.mongodb.net/?retryWrites=true&w=majority&appName=Requestify";
     if (!mongoURI) {
       throw new Error("MONGO_URI environment variable is not set");
     }
