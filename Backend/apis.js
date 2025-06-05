@@ -1,8 +1,11 @@
 const express = require('express');
 const http = require('http');
 const WebSocket = require('ws');
+const cors = require('cors');
 const connectDB = require('./dbconnection');
+const { broadcast, setWSS } = require("./wss");
 
+// Routes
 const Loginroute = require('./Loginroute');
 const signuproute = require('./signuproute');
 const roomRoutes = require('./createroomroute');
@@ -14,50 +17,34 @@ const QueueRoute = require('./QueueRoutes');
 const voteup = require('./voteup');
 const emptyqueue = require('./empty_queue');
 const deletetopsong = require('./DeleteTopSong');
-const { broadcast, setWSS } = require("./wss");
-const app = express();
 
-// Setup WebSocket server
-const cors = require('cors');
+const app = express();
 const corsOptions = {
     origin: ["https://requestify-frontend.vercel.app"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    optionSuccessStatus: 200,
-    allowedHeaders: ["Content-Type", "Authorization","auth-token"], // Allowed headers
+    allowedHeaders: ["Content-Type", "Authorization","auth-token"],
 };
 app.use(cors(corsOptions));
-
-
-
-const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
-
-setWSS(wss);
-
-// app.use(cors({
-//   origin: function (origin, callback) {
-//     // Allow all origins 
-//     callback(null, origin || '*');
-//   },
-//   credentials: true
-// }));
-
-
 app.use(express.json());
 
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//   next();
-// });
+// Add root route for Render health check
+app.get('/', (req, res) => {
+  res.send('Backend is running!');
+});
 
-// Connect to MongoDB
+// WebSocket setup
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server });
+setWSS(wss);
+
+// DB connection
 connectDB();
 
+// Broadcast accessible in routes
 app.locals.broadcast = broadcast;
 
+// API routes
 app.post('/login', Loginroute);
 app.post('/signup', signuproute);
 app.post('/createroom', roomRoutes);
@@ -70,20 +57,13 @@ app.post('/voteup', voteup);
 app.post('/emptyqueue', emptyqueue);
 app.post('/removesong', deletetopsong);
 
-// WebSocket connection event
+// WebSocket events
 wss.on('connection', (ws) => {
-
-
-  ws.on('message', (message) => {
-    
-  });
-
-  ws.on('close', () => {
-   
-  });
+  ws.on('message', (message) => { });
+  ws.on('close', () => { });
 });
 
 const PORT = process.env.PORT || 8000;
 server.listen(PORT, () => {
-  
+  console.log(`Server running on port ${PORT}`);
 });
