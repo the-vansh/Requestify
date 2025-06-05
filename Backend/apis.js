@@ -34,7 +34,7 @@ const cors = require('cors');
 // }));
 
 const corsOptions = {
-    origin: ["http://localhost:3000"],
+    origin: ["https://requestify-frontend.vercel.app/"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     optionSuccessStatus: 200,
